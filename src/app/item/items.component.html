@@ -37,7 +37,6 @@ class names available for styling your app at https://docs.nativescript.org/ui/t
     colSpan="2"
     [items]="items"
     (loaded)="listViewLoaded()"
-    class="list-group"
     *ngIf="(activeListView$ | async) == 0"
   >
     <ng-template let-item="item" let-odd="odd" let-even="even">
@@ -45,7 +44,6 @@ class names available for styling your app at https://docs.nativescript.org/ui/t
         <Label
           [nsRouterLink]="['/item', item.id]"
           [text]="item.name"
-          class="list-group-item"
         ></Label>
       </StackLayout>
     </ng-template>
@@ -54,7 +52,6 @@ class names available for styling your app at https://docs.nativescript.org/ui/t
     row="1"
     colSpan="2"
     [items]="items"
-    class="list-group"
     (loaded)="listViewLoaded()"
     *ngIf="(activeListView$ | async) == 1"
   >
@@ -63,7 +60,6 @@ class names available for styling your app at https://docs.nativescript.org/ui/t
         <Label
           [nsRouterLink]="['/item', item.id]"
           [text]="item.name"
-          class="list-group-item"
         ></Label>
       </StackLayout>
     </ng-template>

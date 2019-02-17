@@ -4,6 +4,8 @@ import { map } from "rxjs/operators";
 import { Item } from "./item";
 import { ItemService } from "./item.service";
 
+declare function gc(): void;
+
 @Component({
   selector: "ns-items",
   moduleId: module.id,
@@ -31,7 +33,7 @@ export class ItemsComponent implements OnInit {
   public readonly flips$ = new BehaviorSubject<number>(0);
 
   public readonly activeListView$ = combineLatest(
-    interval(2000),
+    interval(1000),
     this.flipListViews$
   ).pipe(
     map(([i, flipListViews]) => {
@@ -69,6 +71,10 @@ export class ItemsComponent implements OnInit {
       this.flips$.next(flips);
 
       console.log(`${flips} flip`);
+    }
+
+    if (typeof gc === 'function'){
+        gc();
     }
   }
 }
