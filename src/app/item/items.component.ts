@@ -31,9 +31,21 @@ export class ItemsComponent implements OnInit {
   public readonly flips$ = new BehaviorSubject<number>(0);
 
   public readonly activeListView$ = combineLatest(
-    interval(1000),
+    interval(2000),
     this.flipListViews$
-  ).pipe(map(([i, flipListViews]) => (flipListViews ? i % 2 : 0)));
+  ).pipe(
+    map(([i, flipListViews]) => {
+      if (!flipListViews) {
+        return 0;
+      }
+
+      if (i % 2 == 0) {
+        return 0;
+      }
+
+      return 1;
+    })
+  );
 
   items: Array<Item>;
 
@@ -53,7 +65,10 @@ export class ItemsComponent implements OnInit {
 
   public listViewLoaded() {
     if (this.flipListViews$.value) {
-      this.flips$.next(this.flips$.value + 1);
+      const flips = this.flips$.value + 1;
+      this.flips$.next(flips);
+
+      console.log(`${flips} flip`);
     }
   }
 }
