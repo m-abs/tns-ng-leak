@@ -46,7 +46,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.items = this.itemService.getItems();
 
-    this.toggleFlipListViews();
+    // this.toggleFlipListViews();
   }
 
   public ngOnDestroy(): void {
