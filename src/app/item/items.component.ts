@@ -4,7 +4,7 @@ import { map } from "rxjs/operators";
 import { Item } from "./item";
 import { ItemService } from "./item.service";
 
-declare function gc(): void;
+declare function gc(something?: boolean): void;
 
 @Component({
   selector: "ns-items",
@@ -81,7 +81,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
           if (i % 25 === 0) {
             if (typeof gc === "function") {
               console.log(`GC()`);
-              gc();
+              gc(i % 50 === 0);
             }
           }
 

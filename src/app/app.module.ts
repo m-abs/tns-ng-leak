@@ -5,14 +5,17 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { ItemsComponent } from "./item/items.component";
+
+/*
 import * as trace from 'tns-core-modules/trace'
 import * as ngTrace from 'nativescript-angular/trace';
 
-/* trace.enable()
+trace.enable()
 trace.setCategories([
     ngTrace.rendererTraceCategory,
     ngTrace.viewUtilCategory,
-].join(',')) */
+].join(','));
+*/
 
 for (const eventName of [
   nsApp.lowMemoryEvent,
@@ -43,6 +46,6 @@ for (const eventName of [
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*
-Pass your application module to the bootstrapModule function located in main.ts to start your app
+  Pass your application module to the bootstrapModule function located in main.ts to start your app
 */
 export class AppModule {}

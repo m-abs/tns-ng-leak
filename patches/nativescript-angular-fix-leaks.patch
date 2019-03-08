@@ -1,0 +1,22 @@
+--- node_modules/nativescript-angular/platform-common.js.orig	2019-02-21 14:12:59.995002730 +0100
++++ node_modules/nativescript-angular/platform-common.js	2019-02-21 14:17:02.197646564 +0100
+@@ -184,7 +184,19 @@ var NativeScriptPlatformRef = /** @class
+             }
+             args.root = rootContent;
+         });
++        var exitCallback = profiling_1.profile("nativescript-angular/platform-common.exitCallback", function () {
++            var lastModuleRef = lastBootstrappedModule ? lastBootstrappedModule.get() : null;
++            if (lastModuleRef) {
++                lastBootstrappedModule = null;
++                lastModuleRef.destroy();
++            }
++
++            if (!autoCreateFrame) {
++                rootContent = null;
++            }
++        });
+         application_1.on(application_1.launchEvent, launchCallback);
++        application_1.on(application_1.exitEvent, exitCallback);
+         application_1.run();
+     };
+     NativeScriptPlatformRef.prototype._livesync = function () {
