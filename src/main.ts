@@ -6,21 +6,31 @@ import { enableProdMode } from "@angular/core";
 import * as app from "tns-core-modules/application";
 enableProdMode();
 
-for (const key of Object.keys(app)) {
-  if (/Event$/.test(key)) {
-    app.on(app[key], () => {
-      console.log(app[key]);
-    });
+function logEvent(eventName: string, stack: string) {
+  console.log(`--- START - [${eventName}] ---`)
+  stack.split(`\n`).forEach((line) => console.log(line));
+  console.log(`--- END   - [${eventName}] ---`)
+}
+
+for (const [key, eventName] of Object.entries(app)) {
+  if (!/Event$/.test(key) || typeof eventName !== "string") {
+    continue;
   }
+
+  app.on(eventName, () => {
+    logEvent(eventName, new Error().stack);
+  });
 }
 
 if (app.android) {
-  for (const key of Object.keys(app.AndroidApplication)) {
-    if (/Event$/.test(key)) {
-      app.android.on(app.AndroidApplication[key], () => {
-        console.log(app.AndroidApplication[key]);
-      });
+  for (const [key, eventName] of Object.entries(app.AndroidApplication)) {
+    if (!/Event$/.test(key) || typeof eventName !== "string") {
+      continue;
     }
+
+    app.android.on(eventName, () => {
+      logEvent(eventName, new Error().stack);
+    });
   }
 }
 
