@@ -6,16 +6,14 @@ import { AppComponent } from "./app.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { ItemsComponent } from "./item/items.component";
 
-/*
 import * as trace from 'tns-core-modules/trace'
 import * as ngTrace from 'nativescript-angular/trace';
 
 trace.enable()
 trace.setCategories([
-    ngTrace.rendererTraceCategory,
-    ngTrace.viewUtilCategory,
+    // ngTrace.rendererTraceCategory,
+    // ngTrace.viewUtilCategory,
 ].join(','));
-*/
 
 for (const eventName of [
   nsApp.lowMemoryEvent,
@@ -27,7 +25,6 @@ for (const eventName of [
     for (const [key, value] of Object.entries(evt)) {
       console.log(`${key} = ${value}`);
     }
-
     console.log(`---- END of ${eventName} ----`);
   });
 }

@@ -3,9 +3,19 @@ import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 
 import { AppModule } from "./app/app.module";
 import { enableProdMode } from "@angular/core";
+import * as app from "tns-core-modules/application";
+
+declare function gc(something?: boolean): void;
+
+app.on(app.exitEvent, () => {
+  if (typeof gc === "function") {
+    gc(true);
+    gc();
+  }
+});
+
 enableProdMode();
 /* 
-import * as app from "tns-core-modules/application";
 function logEvent(eventName: string, stack: string) {
   console.log(`--- START - [${eventName}] ---`)
   stack.split(`\n`).forEach((line) => console.log(line));
