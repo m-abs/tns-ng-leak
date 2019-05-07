@@ -3,9 +3,9 @@ import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 
 import { AppModule } from "./app/app.module";
 import { enableProdMode } from "@angular/core";
-import * as app from "tns-core-modules/application";
 enableProdMode();
-
+/* 
+import * as app from "tns-core-modules/application";
 function logEvent(eventName: string, stack: string) {
   console.log(`--- START - [${eventName}] ---`)
   stack.split(`\n`).forEach((line) => console.log(line));
@@ -32,7 +32,7 @@ if (app.android) {
       logEvent(eventName, new Error().stack);
     });
   }
-}
+} */
 
 // A traditional NativeScript application starts by initializing global objects,
 // setting up global CSS rules, creating, and navigating to the main page.
