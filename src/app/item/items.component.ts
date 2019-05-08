@@ -23,7 +23,7 @@ declare function gc(something?: boolean): void;
     `
   ]
 })
-export class ItemsComponent implements OnInit, OnDestroy {
+export class ItemsComponent implements OnDestroy {
   public readonly flipListViews$ = new BehaviorSubject<boolean>(false);
   public readonly flipBtnLabel$ = this.flipListViews$.pipe(
     map(flipListViews =>
@@ -32,28 +32,26 @@ export class ItemsComponent implements OnInit, OnDestroy {
   );
   public readonly flips$ = new BehaviorSubject<number>(0);
 
-  public readonly activeListView$ = new BehaviorSubject<0 | 1>(0);
+  public readonly activeListView$ = new BehaviorSubject<number>(0);
   public sub: Subscription;
 
-  items: Array<Item>;
+  public items = this.itemService.getItems();
 
   private flipStart: Date;
 
-  // This pattern makes use of Angular’s dependency injection implementation to
+  // This pattern makes use of Angular's dependency injection implementation to
   // inject an instance of the ItemService service into this class.
   // Angular knows about this service because it is included in your app’s main NgModule,
   // defined in app.module.ts.
   constructor(private itemService: ItemService, private zone: NgZone) {}
-
-  public ngOnInit(): void {
-    this.items = this.itemService.getItems();
-  }
 
   public ngOnDestroy(): void {
     if (this.sub) {
       this.sub.unsubscribe();
       this.sub = null;
     }
+
+    this.items = null;
   }
 
   public toggleFlipListViews() {
@@ -93,7 +91,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
             }
           }
 
-          if (i >= 10000) {
+          if (i >= 1000) {
             this.sub.unsubscribe();
             this.sub = null;
 

@@ -40,12 +40,7 @@ class names available for styling your app at https://docs.nativescript.org/ui/t
     *ngIf="(activeListView$ | async) == 0"
   >
     <ng-template let-item="item" let-odd="odd" let-even="even">
-      <StackLayout [class.grey]="odd">
-        <Label
-          [nsRouterLink]="['/item', item.id]"
-          [text]="item.name"
-        ></Label>
-      </StackLayout>
+      <StackLayout [class.grey]="odd" ns-item-row [item]="item"> </StackLayout>
     </ng-template>
   </ListView>
   <ListView
@@ -56,12 +51,7 @@ class names available for styling your app at https://docs.nativescript.org/ui/t
     *ngIf="(activeListView$ | async) == 1"
   >
     <ng-template let-item="item" let-odd="odd" let-even="even">
-      <StackLayout [class.grey]="even">
-        <Label
-          [nsRouterLink]="['/item', item.id]"
-          [text]="item.name"
-        ></Label>
-      </StackLayout>
+      <StackLayout [class.grey]="even" ns-item-row [item]="item"> </StackLayout>
     </ng-template>
   </ListView>
 </GridLayout>

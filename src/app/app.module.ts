@@ -8,6 +8,7 @@ import { ItemsComponent } from "./item/items.component";
 
 import * as trace from 'tns-core-modules/trace'
 import * as ngTrace from 'nativescript-angular/trace';
+import { ItemRowComponent } from "./item/item-row-component";
 
 trace.enable()
 trace.setCategories([
@@ -38,7 +39,7 @@ for (const eventName of [
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, AppRoutingModule],
-  declarations: [AppComponent, ItemsComponent, ItemDetailComponent],
+  declarations: [AppComponent, ItemsComponent, ItemDetailComponent, ItemRowComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA]
 })
